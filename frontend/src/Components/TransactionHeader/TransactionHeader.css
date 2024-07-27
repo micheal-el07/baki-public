@@ -1,0 +1,38 @@
+/* .transaction-header {
+    display: flex;
+} */
+h2 {
+    font-family: "Manrope";
+    font-size: 24px;
+}
+
+.columns-expanses {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.table-data {
+    width: 25%;
+    text-align: center;
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+.table-data p {
+    margin: 0px;
+}
+
+.data-header {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.filler {
+    max-width: 30px;
+}
+
+.main-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

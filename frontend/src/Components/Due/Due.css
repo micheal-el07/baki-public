@@ -1,0 +1,14 @@
+.due {
+    /* background: rgb(155, 102, 255); */
+    width: 35%;
+}
+
+.due h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin: 0px;
+    font-family: "Manrope";
+    font-size: 20px;
+}

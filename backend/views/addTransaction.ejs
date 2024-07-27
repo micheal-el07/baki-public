@@ -1,0 +1,37 @@
+<%- include('partials/Header.ejs'); -%>
+
+    <div class="body-container">
+        <div class="topPage">
+            <div class="topPage-webName subTop">
+                <form action="/" method="get">
+                    <button type="submit" class="home-button">
+                        <h1>Bayar</h1>
+                    </button>
+                </form>
+            </div>
+            <div class="topPage-date subTop">
+                <h1>24 July 2024</h1>
+            </div>
+            <div class="topPage-others subTop">
+                <!-- <button>Add</button> -->
+            </div>
+        </div>
+        <div class="mainPage-addtransaction">
+            <h1>Add New Transaction</h1>
+            <form action="/addtransaction" method="post" class="addtransaction-form">
+                <title>Add Transaction</title>
+                <input type="text" name="transaction-name" class="addtransaction-input" placeholder="Title">
+                <input type="text" name="transaction-amount" class="addtransaction-input" placeholder="Amount">
+                <select name="transaction-type" id="transaction-type">
+                    <option value="income">Income</option>
+                    <option value="expanses">Expanses</option>
+                </select>
+                <input type="text" name="transaction-remark" class="addtransaction-input" placeholder="Remark">
+                <input type="date" name="transaction-date" class="addtransaction-input">
+                <button type="submit">ADD</button>
+            </form>
+        </div>
+
+    </div>
+
+    <%- include('partials/Footer.ejs'); -%>

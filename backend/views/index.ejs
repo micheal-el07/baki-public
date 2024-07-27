@@ -1,0 +1,180 @@
+<%- include('partials/Header.ejs'); -%>
+
+    <div class="body-container">
+        <div class="topPage">
+            <div class="topPage-webName subTop">
+                <form action="/" method="get">
+                    <button type="submit" class="home-button">
+                        <h1>Bayar</h1>
+                    </button>
+                </form>
+            </div>
+            <div class="topPage-date subTop mid-top">
+                <h2>
+                    <%= date.fullDate %>
+                </h2>
+            </div>
+            <div class="topPage-balance subTop mid-top">
+                <h2>
+                    Balance: RM <%= (incomeOutcome.totalIncome - incomeOutcome.totalExpanses -
+                        dueItems.dueAmount).toFixed(2) %>
+                </h2>
+            </div>
+            <div class="topPage-others subTop">
+                <form action="/transaction" method="get">
+                    <button class="add-transaction">ADD</button>
+                </form>
+                <form action="/" method="get">
+                    <button class="login-out"><img class="icon" src="/assets/icons/logout-2.svg"></button>
+                </form>
+            </div>
+        </div>
+        <div class="lowerPage">
+            <div class="mainPage-left mainSection">
+                <div class="transactions-header">
+                    <h2>Incomes</h2>
+                    <h2>RM <%= incomeOutcome.totalIncome %>
+                    </h2>
+                </div>
+                <div class="transactions-body">
+                    <div class="columns-expanses">
+                        <p class="table-data data-header">Name</p>
+                        <p class="table-data data-header">Type</p>
+                        <p class="table-data data-header">Amount</p>
+                        <p class="table-data data-header">Date</p>
+                    </div>
+
+                    <% for (let item of transactions) { %>
+                        <% if (item.type==='income' ) { %>
+                            <div class="expanses-<%=item.id %> subTransaction subIncome">
+                                <p class="table-data">
+                                    <%= item.name %>
+                                </p>
+                                <p class="table-data">
+                                    <%= item.type %>
+                                </p>
+                                <p class="table-data">RM <%= item.amount %>
+                                </p>
+                                <p class="table-data">
+                                    <%= item.date %>
+                                </p>
+                                <div class="edit-delete">
+                                    <button class="update-transaction">E</button>
+                                    <button class="delete-transaction">X</button>
+                                </div>
+                            </div>
+
+                            <% } %>
+                                <% } %>
+                </div>
+            </div>
+            <div class="mainPage-right mainSection">
+                <div class="expanse-due expanses">
+                    <div class="transactions-header">
+                        <h2>Expanses</h2>
+                        <div class="expanses-total">
+                            <h2>RM <%= incomeOutcome.totalExpanses %>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="transactions-body">
+                        <div class="columns-expanses">
+                            <p class="table-data data-header">Name</p>
+                            <p class="table-data data-header">Type</p>
+                            <p class="table-data data-header">Amount</p>
+                            <p class="table-data data-header">Date</p>
+                        </div>
+
+                        <% for (let item of monthlyExpanse) { %>
+                            <% if (item.type==='expanses' ) { %>
+                                <div class="expanses-<%=item.id %> subTransaction">
+                                    <p class="table-data">
+                                        <%= item.name %>
+                                    </p>
+                                    <p class="table-data">
+                                        <%= item.type %>
+                                    </p>
+                                    <p class="table-data">
+                                        <%= item.amount %>
+                                    </p>
+                                    <p class="table-data">
+                                        <%= item.date %>
+                                    </p>
+                                    <div class="edit-delete">
+                                        <button class="update-transaction">E</button>
+                                        <button class="delete-transaction">X</button>
+                                    </div>
+                                </div>
+
+                                <% } %>
+                                    <% } %>
+                    </div>
+                </div>
+
+                <div class="expanse-current expanses">
+                    <div class="transactions-header">
+                        <h2>Due</h2>
+                        <h2>RM <%= dueItems.dueAmount %>
+                        </h2>
+                    </div>
+                    <div class="transactions-body">
+                        <div class="columns-expanses">
+                            <p class="table-data data-header">Name</p>
+                            <p class="table-data data-header">Type</p>
+                            <p class="table-data data-header">Amount</p>
+                            <p class="table-data data-header">Due Date</p>
+                        </div>
+
+
+                        <!-- <hr class="due-divider"> -->
+                        <h3 class="due-divider">Upcoming</h3>
+                        <% for (let item of dueItems.unpaid.upcoming) { %>
+                            <div class="expanses-<%=item.id %> subTransaction unpaid">
+                                <p class="table-data">
+                                    <%= item.name %>
+                                </p>
+                                <p class="table-data">
+                                    <%= item.type %>
+                                </p>
+                                <p class="table-data">
+                                    <%= item.amount %>
+                                </p>
+                                <p class="table-data">
+                                    <%= item.dayOfMonth - date.day %>
+                                </p>
+                                <div class="edit-delete">
+                                    <button class="update-transaction">E</button>
+                                    <button class="delete-transaction">X</button>
+                                </div>
+                            </div>
+
+                            <% } %>
+                                <h3 class="due-divider">Due</h3>
+                                <% for (let item of dueItems.unpaid.due) { %>
+                                    <div class="expanses-<%=item.id %> subTransaction unpaid">
+                                        <p class="table-data">
+                                            <%= item.name %>
+                                        </p>
+                                        <p class="table-data">
+                                            <%= item.type %>
+                                        </p>
+                                        <p class="table-data">
+                                            <%= item.amount %>
+                                        </p>
+                                        <p class="table-data">
+                                            <%= item.dayOfMonth - date.day %>
+                                        </p>
+                                        <div class="edit-delete">
+                                            <button class="update-transaction">E</button>
+                                            <button class="delete-transaction">X</button>
+                                        </div>
+                                    </div>
+
+                                    <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/Footer.ejs'); -%>

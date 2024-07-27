@@ -1,0 +1,275 @@
+body {
+    /* background: #348439; */
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-family: "Manrope";
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.topPage-webName h1 {
+    font-family: "Bebas Neue";
+    font-weight: 600;
+    font-size: 55px;
+}
+
+.body-container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.topPage {
+    width: 100%;
+    height: 10%;
+    /* background-color: blanchedalmond; */
+    display: flex;
+    box-shadow: 0px 1px 10px rgb(0, 0, 0, 0.3);
+}
+
+.subTop {
+    width: 25%;
+    height: 100%;
+}
+
+/* .mid-top {
+    text-align: end;
+} */
+
+.topPage-webName {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.topPage-webName h1 {
+    margin: 0 0 0 30px;
+}
+
+.topPage-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topPage-balance {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.subTop h2 {
+    font-family: "Manrope";
+    font-weight: 1000;
+}
+
+/* .topPage-balance {
+    margin-left: 30px;
+} */
+
+.topPage-others {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 20px;
+    /* padding-right: 20px; */
+    gap: 10px;
+}
+
+.topPage-others button {
+    /* width: 200px;
+    height: 50px; */
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: "Manrope";
+    font-weight: 800;
+    background-color: rgb(98, 176, 254);
+}
+
+.lowerPage {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+
+.mainSection {
+    display: flex;
+}
+
+.mainPage-right {
+    width: 70%;
+    /* background-color: rgb(247, 151, 122); */
+}
+
+.mainPage-left {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    /* background-color: aquamarine; */
+}
+
+.expanses {
+    width: 50%;
+    height: 100%;
+}
+
+/* .expanse-due {
+    border: 1px solid black;
+}
+
+.expanse-current {
+    border: 1px solid black;
+} */
+
+.subTransaction {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 4px 0px 8px;
+    align-items: center;
+    min-height: 60px;
+    border-radius: 8px;
+    margin: 10px 5px;
+    background-color: rgb(255, 96, 96, 0.7);
+    font-weight: 800;
+    /* box-shadow: 1px 1px 10px lightblue; */
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.subTransaction p {
+    font-weight: 550;
+
+}
+
+.subIncome {
+    background-color: rgb(139, 239, 161);
+}
+
+.subTransaction-item {
+    text-align: center;
+    width: 25%;
+    font-weight: 300;
+}
+
+
+.columns-expanses {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.table-data {
+    width: 25%;
+    text-align: center;
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+.table-data p {
+    margin: 0px;
+}
+
+.data-header {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.expanses-total {
+    text-align: center;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90px;
+    gap: 50px;
+    /* background: palevioletred;
+    border: 1px solid black; */
+}
+
+.lowerPage h2 {
+    font-family: "Manrope";
+}
+
+.due-divider {
+    margin: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Manrope";
+}
+
+.home-button {
+    border: none;
+    background: none;
+}
+
+.mainPage-addtransaction {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mainPage-addtransaction h1 {
+    margin-top: 0px;
+}
+
+.addtransaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: 1px solid black;
+    box-shadow: 4px 5px 3px 1px rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 20%;
+    height: 400px;
+    padding: 40px 40px;
+    align-items: center;
+}
+
+.add-transaction {
+    /* margin-top: 20px; */
+    height: 40px;
+    width: 100px;
+}
+
+.login-out {
+    /* margin-top: 20px; */
+    height: 40px;
+    width: 40px;
+}
+
+.addtransaction-input {
+    width: 75%;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    box-shadow: 4px 5px 3px 1px rgb(0, 0, 0, 0.1);
+    padding: 0 10px;
+}
+
+.addtransaction-form select {
+    width: 80%;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+}
+
+.edit-delete {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 25px;
+    margin: 0px 5px;
+}

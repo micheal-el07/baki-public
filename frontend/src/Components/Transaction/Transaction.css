@@ -1,0 +1,26 @@
+.subTransaction {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 4px 0px 8px;
+    align-items: center;
+    min-height: 60px;
+    border-radius: 8px;
+    margin: 10px 5px;
+    background-color: rgb(255, 96, 96, 0.7);
+    font-weight: 800;
+    /* box-shadow: 1px 1px 10px lightblue; */
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.subTransaction p {
+    font-weight: 550;
+
+}
+
+.edit-delete {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 25px;
+    margin: 0px 5px;
+}
