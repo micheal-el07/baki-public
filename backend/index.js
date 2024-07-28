@@ -63,11 +63,12 @@ app.get('/transactions/:month/:user', async (req, res) => {
 
 app.post("/transaction/:user", async (req, res) => {
     const user = req.params.user;
-    const name = req.body.name;
-    const type = req.body.type;
-    const amount = req.body.amount;
-    const date = new Date() || req.body.date;
-
+    const toParse = Object.keys(req.body)[0]
+    const body = JSON.parse(toParse)
+    const name = body.name;
+    const type = body.type;
+    const amount = body.amount;
+    const date = new Date() || body.date;
     try {
         await db.query(
             "INSERT INTO transactions (name, type, amount, date, userid) VALUES ($1, $2, $3, $4, $5)",

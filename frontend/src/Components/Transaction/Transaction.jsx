@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import './Transaction.css'
 import { PageContext } from '../../Context/PageContext'
 import { useNavigate } from 'react-router-dom'
-
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 const Transaction = (props) => {
   const { deleteTransaction } = useContext(PageContext)
@@ -20,6 +21,8 @@ const Transaction = (props) => {
 
   const red = "rgb(139, 239, 161)"
   const green = "rgb(255, 96, 96, 0.7)"
+  const purple = "rgb(155, 102, 255)"
+
 
   return (
     <div className='transaction'>

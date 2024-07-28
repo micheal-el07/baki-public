@@ -4,8 +4,8 @@ import { PageContext } from '../../Context/PageContext'
 
 const AddEditForm = (props) => {
 
-    const { allTransaction } = useContext(PageContext)
-    
+    const { allTransaction, addTransaction, current_user } = useContext(PageContext)
+
 
     const edit_id = props.param
     // console.log(edit_id, " param in addeditform")
@@ -46,14 +46,23 @@ const AddEditForm = (props) => {
     const name = props.purpose
     const modName = name[0].toUpperCase() + name.slice(1)
 
+    function handleSubmit (event) {
+        event.preventDefault()
+        addTransaction(current_user, JSON.stringify(form))
+        console.log(current_user, " user in handlesubmit")
+        console.log(form, " form in handlesubmit")
+    }
+
+
+
     return (
         <div className='add-edit-form'>
-            <form action={path} method="post" className='form-main'>
+            <form onSubmit={handleSubmit} className='form-main'>
                 <h2>{modName} Form</h2>
                 <input onChange={handleChange} type="text" name='name' className='add-edit' placeholder={condition === "edit" ? to_edit.name : "Name"} />
                 <input onChange={handleChange} type="text" name='type' className='add-edit' placeholder={condition === "edit" ? to_edit.type : "Type"} />
                 <input onChange={handleChange} type="text" name='amount' className='add-edit' placeholder={condition === "edit" ? to_edit.amount : "Amount"} />
-                <input onChange={handleChange} type="date" name='date' className='add-edit'/>
+                <input onChange={handleChange} type="date" name='date' className='add-edit' />
                 <button type="submit" className='submit-button'>{(props.purpose).toUpperCase()}</button>
             </form>
         </div>
