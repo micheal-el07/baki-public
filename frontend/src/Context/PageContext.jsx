@@ -16,22 +16,8 @@ console.log(allTransaction, " from pagecontext")
 
 export const PageContext = createContext(null);
 
-var incomeTrans = []
-var expanseTrans = []
-
-allTransaction.map((item) => {
-    if (item.type === "income") {
-        incomeTrans.push(item)
-    }
-})
-// console.log(incomeTrans, " is income")
-
-allTransaction.map((item) => {
-    if (item.type === "expanses") {
-        expanseTrans.push(item)
-    }
-})
-// console.log(expanseTrans, " is expanse")
+const expanseTrans = allTransaction.filter(item => item.type === "expanses")
+const incomeTrans = allTransaction.filter(item => item.type === "income")
 
 const PageContextProvider = (props) => {
 

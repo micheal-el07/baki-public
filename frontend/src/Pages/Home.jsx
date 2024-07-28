@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
+// import React, { useContext } from 'react'
+import React from 'react'
 import '../Pages/CSS/Home.css'
 import Navbar from '../Components/Navbar/Navbar.jsx'
 import Date from '../Components/Date/Date.jsx'
 import Income from '../Components/Income/Income.jsx'
 import Expanses from '../Components/Expanses/Expanses.jsx'
 import Due from '../Components/Due/Due.jsx'
-import { PageContext } from '../Context/PageContext'
+// import { PageContext } from '../Context/PageContext'
 
 const Home = (props) => {
-  const { allTransaction } = useContext(PageContext)
+  // const { allTransaction } = useContext(PageContext)
 
   return (
     <>

@@ -8,12 +8,11 @@ const Expanses = (props) => {
   const { allTransaction } = useContext(PageContext)
 
   var totalAmount = 0
-  {
-    allTransaction.map((item) => {
-      if (item.type === "expanses") {
-        totalAmount += item.amount
-      }
-    })
+
+  for (let item of allTransaction) {
+    if (item.type === "expanses") {
+      totalAmount += item.amount
+    }
   }
 
   return (
