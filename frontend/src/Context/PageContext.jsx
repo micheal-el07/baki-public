@@ -12,8 +12,6 @@ const allTransaction = transactions.data
 let recurring  = await axios.get(`${API_URL}/recurring/${current_user}`)
 recurring = recurring.data
 
-console.log(allTransaction, " from pagecontext")
-
 export const PageContext = createContext(null);
 
 const expanseTrans = allTransaction.filter(item => item.type === "expanses")

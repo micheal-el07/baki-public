@@ -22,7 +22,7 @@ p {
 }
 
 .topPage-webName button {
-    tex: "Bebas Neue";
+    /* tex: "Bebas Neue"; */
     font-weight: 600;
     font-size: 55px;
     border: none;
@@ -47,6 +47,7 @@ p {
     align-items: center;
     justify-content: start;
 }
+
 .topPage-date {
     display: flex;
     justify-content: center;
@@ -63,10 +64,6 @@ p {
     font-family: "Manrope";
     font-weight: 1000;
 }
-
-/* .topPage-balance {
-    margin-left: 30px;
-} */
 
 .topPage-others {
     display: flex;
