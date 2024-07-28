@@ -25,10 +25,15 @@ const Due = (props) => {
         }
     }
 
+    // var totalAmount = props.data.reduce((n, {amount}) => n + amount, 0)
+
+    var before_amount = due_bills.before_due.reduce((n, {amount}) => n + amount, 0)
+    var total_due = due_bills.after_due.reduce((n, {amount}) => n + amount, before_amount)
+
     return (
         <div className='due'>
             {/* amount={total_due} */}
-            <TransactionHeader title={props.title} />
+            <TransactionHeader title={props.title} amount={total_due} />
             <div className="to-due">
                 <h3>To be Paid</h3>
                 {due_bills.before_due.map((item, i) => {

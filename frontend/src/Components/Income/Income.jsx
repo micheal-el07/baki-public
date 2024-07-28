@@ -1,32 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Income.css'
 import TransactionHeader from '../TransactionHeader/TransactionHeader'
-import { PageContext } from '../../Context/PageContext'
 import Transaction from '../Transaction/Transaction'
 
 const Income = (props) => {
-  const { allTransaction } = useContext(PageContext)
-
-  var totalAmount = 0
-  {
-    allTransaction.map((item) => {
-      if (item.type === "income") {
-        totalAmount += item.amount
-      }
-    })
-  }
+  var totalAmount = props.data.reduce((n, {amount}) => n + amount, 0)
 
   return (
     <div className='income'>
-        <TransactionHeader title={props.title} amount={totalAmount} />
+        <TransactionHeader title={props.title} amount={parseFloat(totalAmount).toFixed(2)} />
 
-        {allTransaction.map((item, i) => {
-          if (item.type === "income") {
+        {props.data.map((item, i) => {
             return <Transaction key={i} id={item.id} name={item.name} type={item.type} amount={item.amount} date={item.date} />
-          }
-          else {
-            return null;
-          }
         })}
     </div>
   )
