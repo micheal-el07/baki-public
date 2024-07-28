@@ -12,9 +12,12 @@ const allTransaction = transactions.data
 let recurring  = await axios.get(`${API_URL}/recurring/${current_user}`)
 recurring = recurring.data
 
+async function addTransaction(user, body) {
+    await axios.post(`${API_URL}/transaction/${Number(user)}`, body)
+}
+
 async function deleteTransaction(id) {
     await axios.delete(`${API_URL}/transaction/${Number(id)}`)
-    console.log(id, " is called in pagecontext")
 }
 
 export const PageContext = createContext(null);
@@ -24,7 +27,7 @@ const incomeTrans = allTransaction.filter(item => item.type === "income")
 
 const PageContextProvider = (props) => {
 
-    const contextValue = { allTransaction, incomeTrans, expanseTrans, recurring, deleteTransaction }
+    const contextValue = { allTransaction, incomeTrans, expanseTrans, recurring, current_user, deleteTransaction, addTransaction }
 
     return (
         <PageContext.Provider value={contextValue}>
