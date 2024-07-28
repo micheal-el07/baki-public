@@ -61,7 +61,7 @@ app.get('/transactions/:month/:user', async (req, res) => {
     }
 })
 
-app.post("/application/:user", async (req, res) => {
+app.post("/transaction/:user", async (req, res) => {
     const user = req.params.user;
     const name = req.body.name;
     const type = req.body.type;
