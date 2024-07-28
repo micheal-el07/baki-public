@@ -1,0 +1,38 @@
+#root {
+    /* background: #6d68fb; */
+}
+
+.add-edit {
+    border: 1px solid black;
+    width: 250px;
+    height: 30px;
+}
+
+.add-edit-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.form-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 500px;
+    width: 30%;
+    background-color: antiquewhite;
+    border-radius: 8px;
+}
+
+.submit-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    /* border: 2px solid #A79277; */
+    border: none;
+    margin: 20px 0px 40px 0px;
+    background: rgb(98, 176, 254);
+}

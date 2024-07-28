@@ -23,7 +23,7 @@ const Navbar = (props) => {
                             </h2>
                         </div>
                         <div className="topPage-others subTop">
-                            <form action="/transaction" method="get">
+                            <form action="/add" method="get">
                                 <button className="add-transaction">ADD</button>
                             </form>
                             <form action="/" method="get">

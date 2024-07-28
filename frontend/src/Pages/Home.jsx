@@ -27,7 +27,6 @@ const Home = (props) => {
   return (
     <>
       <Navbar fullDate={Date.fullDate} location={"home"} />
-
       <div className='home'>
         <Income data={incomeTransactions} title={"Income"} />
         <Expanses data={expansesTransactions} title={"Expanses"} />
