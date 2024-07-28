@@ -61,6 +61,23 @@ app.get('/transactions/:month/:user', async (req, res) => {
     }
 })
 
+app.post("/application/:user", async (req, res) => {
+    const user = req.params.user;
+    const name = req.body.name;
+    const type = req.body.type;
+    const amount = req.body.amount;
+    const date = new Date() || req.body.date;
+
+    try {
+        await db.query(
+            "INSERT INTO transactions (name, type, amount, date, userid) VALUES ($1, $2, $3, $4, $5)",
+        [name, type, amount, date, user])
+        res.status(200).json()
+    } catch (err) {
+        res.status(500).json("Error occur on server side while adding new transactions.", err);
+    }
+})
+
 app.get("/recurring/:user", async (req, res) => {
     const user = req.params.user;
     try {
@@ -70,6 +87,18 @@ app.get("/recurring/:user", async (req, res) => {
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json("Error occur on server side while fetching recurring for a user.", err);
+    }
+})
+
+app.delete("/transaction/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        await db.query(
+            "DELETE FROM transactions WHERE id = $1",[id]
+        )
+        res.status(200).json("Ok")
+    } catch (err) {
+        res.status(500).json("Error occur on server side while fetching deleting specific application.", err);
     }
 })
 
