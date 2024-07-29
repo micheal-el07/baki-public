@@ -1,20 +1,27 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AddEditForm.css'
 import { PageContext } from '../../Context/PageContext'
+import { Navigate, useNavigate } from "react-router-dom"
 
 const AddEditForm = (props) => {
-
-    const { allTransaction, addTransaction, current_user } = useContext(PageContext)
-
+    const navigate = useNavigate()
+    const { allTransaction, addTransaction, current_user, editTransaction } = useContext(PageContext)
 
     const edit_id = props.param
-    // console.log(edit_id, " param in addeditform")
-
     const to_edit = allTransaction.find((item) => {
         if (item.id === Number(edit_id)) {
             return item
         }
     })
+
+    const [form, setForm] = useState({
+        name: "",
+        type: "",
+        amount: 0,
+        date: ""
+    })
+    console.log(form)
+
 
     const handleChange = e => {
         setForm(prev => ({
@@ -23,15 +30,26 @@ const AddEditForm = (props) => {
         }))
     }
 
+    function handleSubmit(current_user, toedit_id, form) {
+        const result = addTransaction(current_user, toedit_id, form)
+        if (result) {
+            window.alert("Successfully added")
+        }
+        setForm({
+            name: "",
+            type: "",
+            amount: "",
+            date: ""
+        })
+        window.location.reload()
+    }
 
-    const [form, setForm] = useState({
-        name: "",
-        type: "",
-        amount: 0,
-        date: ""
-    })
+    const handleEdit = (id, edited) => {
+        console.log(edited, "handleEdit is called")
+        const response = editTransaction(id, edited)
+        // navigate(-1);
+    }
 
-    console.log(form)
 
     let path = ""
 
@@ -46,24 +64,16 @@ const AddEditForm = (props) => {
     const name = props.purpose
     const modName = name[0].toUpperCase() + name.slice(1)
 
-    function handleSubmit (event) {
-        event.preventDefault()
-        addTransaction(current_user, JSON.stringify(form))
-        console.log(current_user, " user in handlesubmit")
-        console.log(form, " form in handlesubmit")
-    }
-
-
 
     return (
         <div className='add-edit-form'>
-            <form onSubmit={handleSubmit} className='form-main'>
+            <form className='form-main'>
                 <h2>{modName} Form</h2>
                 <input onChange={handleChange} type="text" name='name' className='add-edit' placeholder={condition === "edit" ? to_edit.name : "Name"} />
                 <input onChange={handleChange} type="text" name='type' className='add-edit' placeholder={condition === "edit" ? to_edit.type : "Type"} />
                 <input onChange={handleChange} type="text" name='amount' className='add-edit' placeholder={condition === "edit" ? to_edit.amount : "Amount"} />
                 <input onChange={handleChange} type="date" name='date' className='add-edit' />
-                <button type="submit" className='submit-button'>{(props.purpose).toUpperCase()}</button>
+                <button type="button" onClick={condition === "edit" ? () => { handleEdit(edit_id, form) } : () => handleSubmit(current_user, form)} className='submit-button'>{(props.purpose).toUpperCase()}</button>
             </form>
         </div>
     )

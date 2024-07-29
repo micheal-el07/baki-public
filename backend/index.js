@@ -37,9 +37,10 @@ app.get('/transactions/:user', async (req, res) => {
     const user = req.params.user;
     try {
         const result = await db.query(
-            "SELECT id, name, amount, type, userid, TO_CHAR(date, 'DD/MM/YYYY') AS date FROM transactions WHERE userid = $1",
+            "SELECT id, name, amount, type, userid, TO_CHAR(date, 'DD/MM/YYYY') AS date FROM transactions WHERE userid = $1 ORDER BY date desc",
             [user]
         );
+        console.log(result.rows)
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json("Error occur on server side while fetching all transactions for a user.", err);
@@ -52,7 +53,7 @@ app.get('/transactions/:month/:user', async (req, res) => {
     const month = req.params.month;
     try {
         const result = await db.query(
-            "SELECT id, name, type, amount, TO_CHAR(date, 'DD/MM/YYYY') AS date FROM transactions where extract(month from date) = $1 and userid = $2",
+            "SELECT id, name, type, amount, TO_CHAR(date, 'DD/MM/YYYY') AS date FROM transactions where extract(month from date) = $1 and userid = $2 ORDER BY date desc",
             [month, user]
         );
         res.status(200).json(result.rows);
@@ -63,20 +64,39 @@ app.get('/transactions/:month/:user', async (req, res) => {
 
 app.post("/transaction/:user", async (req, res) => {
     const user = req.params.user;
-    const toParse = Object.keys(req.body)[0]
-    const body = JSON.parse(toParse)
-    const name = body.name;
-    const type = body.type;
-    const amount = body.amount;
-    const date = new Date() || body.date;
+    const name = req.body.name;
+    const type = req.body.type;
+    const amount = req.body.amount;
+    const date = new Date() || req.body.date;
     try {
-        await db.query(
-            "INSERT INTO transactions (name, type, amount, date, userid) VALUES ($1, $2, $3, $4, $5)",
+        const result = await db.query(
+            "INSERT INTO transactions (name, type, amount, date, userid) VALUES ($1, $2, $3, $4, $5) RETURNING *",
         [name, type, amount, date, user])
-        res.status(200).json()
+        res.status(200).json(result.rows)
     } catch (err) {
-        res.status(500).json("Error occur on server side while adding new transactions.", err);
+        res.status(500).json(err);
     }
+})
+
+app.patch("/transaction/:id", async (req, res) => {
+    const id = req.params.id;
+    const target_query = await db.query("SELECT * FROM transactions WHERE id = $1", [id]);
+    const target = target_query.rows[0];
+    var hold_amount = req.body.amount
+    if(req.body.amount==0) {
+        hold_amount = ""
+    } else {
+        hold_amount = req.body.amount
+    }
+    const name = req.body.name || target.name;
+    const type = req.body.type || target.type;
+    const amount = hold_amount || target.amount;
+    const date = req.body.date || target.date;
+
+    const result = await db.query("UPDATE transactions SET name=$1, type=$2, amount=$3, date=$4 WHERE id=$5 RETURNING *",
+        [name, type, amount, date, id]
+    )
+    res.json(result.rows)
 })
 
 app.get("/recurring/:user", async (req, res) => {

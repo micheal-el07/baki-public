@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navbar.css'
+import { Link } from 'react-router-dom'
 
 const Navbar = (props) => {
     return (
@@ -7,7 +8,7 @@ const Navbar = (props) => {
             <div className="topPage">
                 <div className="topPage-webName subTop">
                     <form action="/" method="get">
-                        <h1>Bayar</h1>
+                        <Link style={{textDecoration:"none", color:"black"}} to={"/"}><h1>Bayar</h1></Link>
                     </form>
                 </div>
                 <div className="topPage-date subTop mid-top">
