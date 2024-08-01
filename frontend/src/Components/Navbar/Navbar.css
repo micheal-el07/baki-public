@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+.navbar {
+    margin-bottom: 20px;
+}
+
 body {
     /* background: #348439; */
     padding: 0;

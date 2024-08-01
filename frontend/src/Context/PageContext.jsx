@@ -13,6 +13,10 @@ const allTransaction = transactions.data
 let recurring  = await axios.get(`${API_URL}/recurring/${current_user}`)
 recurring = recurring.data
 
+async function login(body) {
+    const {data} = await axios.post(`${API_URL}/login`, body, )
+}
+
 async function addTransaction(user, body) {
     console.log("addtransaction is triggered")
     const result = await axios.post(`${API_URL}/transaction/${Number(user)}`, body, {
