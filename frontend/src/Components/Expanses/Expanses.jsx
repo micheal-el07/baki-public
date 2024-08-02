@@ -6,6 +6,7 @@ import Transaction from '../Transaction/Transaction'
 const Expanses = (props) => {
   var totalAmount = props.data.reduce((n, {amount}) => n + amount, 0)
 
+
   return (
     <div className='expanses'>
       <TransactionHeader title={props.title} amount={parseFloat(totalAmount).toFixed(2)} />

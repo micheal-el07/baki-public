@@ -10,15 +10,16 @@ const dateToday = Date
 const transactions = await axios.get(`${API_URL}/transactions/${dateToday.month.monthNumber}/${current_user}`)
 const allTransaction = transactions.data
 
-let recurring  = await axios.get(`${API_URL}/recurring/${current_user}`)
+let recurring = await axios.get(`${API_URL}/recurring/${current_user}`)
 recurring = recurring.data
 
 async function addTransaction(user, body) {
     console.log("addtransaction is triggered")
     const result = await axios.post(`${API_URL}/transaction/${Number(user)}`, body, {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }})
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
     const response = result.status
     console.log(response)
     return response
@@ -27,8 +28,9 @@ async function addTransaction(user, body) {
 async function editTransaction(id, body) {
     const result = await axios.patch(`${API_URL}/transaction/${Number(id)}`, body, {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }})
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
     const response = result.rows
     if (result.data) {
         window.alert("Transaction editted.")

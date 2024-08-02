@@ -8,6 +8,7 @@ import Expanses from '../Components/Expanses/Expanses.jsx'
 import Due from '../Components/Due/Due.jsx'
 import { PageContext } from '../Context/PageContext'
 
+
 const Home = (props) => {
   const { allTransaction } = useContext(PageContext)
   // const [numTrans, setNumTrans] = useState(0)
@@ -23,6 +24,7 @@ const Home = (props) => {
   const recurringTransactions = allTransaction.filter((item) => {
     return (item.type === 'recurring')
   })
+
 
   return (
     <>
