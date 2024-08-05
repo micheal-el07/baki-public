@@ -24,11 +24,11 @@ const Home = (props) => {
   const recurringTransactions = allTransaction.filter((item) => {
     return (item.type === 'recurring')
   })
-
+  console.log(allTransaction)
 
   return (
     <>
-      <Navbar fullDate={Date.fullDate} location={"home"} />
+      <Navbar fullDate={Date.fullDate} location={"home"} allTransactions={allTransaction} />
       <div className='home'>
         <Income data={incomeTransactions} title={"Income"} />
         <Expanses data={expansesTransactions} title={"Expanses"} />
